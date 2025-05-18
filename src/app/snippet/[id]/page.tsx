@@ -1,5 +1,7 @@
 import React from "react";
 import { prisma } from "@/lib/prisma";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type PropDetails = {
   params: { id: string };
@@ -17,8 +19,19 @@ const SnippetDetailPage = async ({ params }: PropDetails) => {
     },
   });
   return (
-    <div>
-      <h1>{id}</h1>
+    <div className="flex flex-col gap-5">
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-xl">{snippet?.title}</h1>
+        <div className="flex items-center gap-2">
+          <Link href={`/snippet/${snippet.id}/edit`}>
+            <Button>Edit</Button>
+          </Link>
+          <Button variant={"destructive"}>Delete</Button>
+        </div>
+      </div>
+      <pre className="p-3 bg-gray-200 rounded border-gray-200">
+        <code>{snippet?.code}</code>
+      </pre>
     </div>
   );
 };
