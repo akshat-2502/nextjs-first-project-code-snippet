@@ -22,7 +22,7 @@ export default async function Home() {
         >
           <h1>{snippet.title}</h1>
           <Link href={`/snippet/${snippet.id}`}>
-            <Button>View</Button>
+            <Button variant={"link"}>View</Button>
           </Link>
         </div>
       ))}
